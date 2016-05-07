@@ -78,5 +78,5 @@ $RECYCLE.BIN/
 # sftp configuration file
 sftp-config.json
 
-#========== App ==========
-dist
+#========== Hexo ==========
+db.json

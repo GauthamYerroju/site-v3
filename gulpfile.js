@@ -10,14 +10,28 @@ var cleanCSS = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var del = require('del');
+var useref = require('gulp-useref');
 var browserSync = require('browser-sync').create();
+
+gulp.task('test', ['compile-stylus', 'test-move-css'], function() {
+	return gulp.src('src/jade/**/*.jade')
+		.pipe(jade({pretty: true}))
+		.pipe(gulp.dest('dist-dev'))
+		.pipe(useref())
+		.pipe(gulp.dest('dist-dev'));
+});
+
+gulp.task('test-move-css', function() {
+	return gulp.src('src/css/**/*.css')
+		.pipe(gulp.dest('dist-dev/css'));
+});
 
 // Preprocessors
 
 gulp.task('compile-stylus', function() {
-	return gulp.src('app/styl/**/*.styl')
+	return gulp.src('src/styl/**/*.styl')
 		.pipe(stylus())
-		.pipe(gulp.dest('app/css'))
+		.pipe(gulp.dest('dist-dev/css'))
 });
 
 gulp.task('compile-jade', function() {
@@ -30,7 +44,7 @@ gulp.task('compile-jade', function() {
 // Build
 
 gulp.task('clean', function() {
-  return del.sync('dist');
+  return del.sync(['dist/**', '!dist', 'dist-dev/**', '!dist-dev']);
 })
 
 gulp.task('css', ['compile-stylus'], function() {
