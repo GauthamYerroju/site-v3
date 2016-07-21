@@ -6,7 +6,6 @@ language: en
 menu:
   Home: /
   About: /about
-  Resume: /resume
   Contact: /contact
   Archives: /archives
 
@@ -15,6 +14,8 @@ favicon: /favicon.ico
 
 # stylesheets loaded in the <head>
 stylesheets:
+- /vendor/normalize.css
+- /vendor/reflex.min.css
 - /css/transform.css
 
 # scripts loaded in the end of the body

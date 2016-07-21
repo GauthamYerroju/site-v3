@@ -1,5 +1,5 @@
 
-- var pageTitle = page.title || config.subtitle || ''
+- var pageTitle = page.title || config.title || ''
 - if (is_archive()) pageTitle = 'Archives'
 - if (is_tag()) pageTitle = 'Tag: ' + page.tag
 - if (is_category()) pageTitle = 'Category: ' + page.category
@@ -15,7 +15,7 @@ html(lang=config.language)
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from config.yml
       each url in theme.stylesheets
-        link(rel='stylesheet', href=url)
+        link(rel='stylesheet', href=url_for(url))
     link(rel="icon", href=config.root + 'img/favicon.png')
   body
     #menu-outer
@@ -23,7 +23,7 @@ html(lang=config.language)
         each url, label in theme.menu
           a(href=url)= label
     #content-outer
-      #content-inner
+      #content-inner.container
         if body
           div!= body
         else
@@ -41,4 +41,4 @@ html(lang=config.language)
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts
-        script(src=url)
+        script(src=url_for(url))

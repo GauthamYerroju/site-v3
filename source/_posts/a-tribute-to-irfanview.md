@@ -1,5 +1,6 @@
 ---
 title: A Tribute to IrfanView
+subtitle: An overview of a great image viewer
 tags:
   - '"image viewer" irfanview "image editor"'
 id: 204
